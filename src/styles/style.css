@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main {
+    padding: 50px;
+}
+.user-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.user-item__content {
+    display: flex;
+    gap: 5px;
+}
+.user-item {
+    width: calc(25% - 16px);
+    padding: 12px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+.user-item__text-capitalize {
+    text-transform: capitalize;
+}
