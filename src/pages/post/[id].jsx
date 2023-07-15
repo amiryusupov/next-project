@@ -2,19 +2,12 @@ import Layout from '@/components/Layout'
 import LoadingWrap from '@/components/LoadingWrap'
 import UserList from '@/components/UserList'
 import useFetch from '@/hooks/useFetch'
-import {usePathname} from "next/navigation"
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 function PostPage() {
-  const router = usePathname()
-  const [id, setId] = useState(null)
-  const {data, loading} = useFetch(id ? `https://jsonplaceholder.typicode.com/posts/${id}` : null, [id])
-  useEffect(() => {
-    if(router) {
-      setId(router.split("/")[2])
-    }
-  }, [router])
+  const router = useRouter()
+  const {data, loading} = useFetch(router.query.id ? `https://jsonplaceholder.typicode.com/posts/${router.query.id}` : null, [router.query.id])
   return (
     <Layout>
     <LoadingWrap loading={loading}>
