@@ -1,16 +1,15 @@
+import Layout from "@/components/Layout";
+import LoadingWrap from "@/components/LoadingWrap";
 import UserList from "@/components/UserList";
-import { useEffect, useState } from "react";
+import useFetch from "@/hooks/useFetch";
 
 export default function Home() {
-  const [userList, setUserList] = useState([])
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => setUserList(json))
-  }, [])
+  const { data, loading } = useFetch('https://jsonplaceholder.typicode.com/users')
   return (
-    <main className="main">
-      <UserList list={userList}/>
-    </main>
+    <Layout>
+      <LoadingWrap loading={loading}>
+        <UserList list={data} />
+      </LoadingWrap>
+    </Layout>
   )
 }
